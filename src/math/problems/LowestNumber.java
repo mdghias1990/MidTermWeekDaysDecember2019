@@ -3,6 +3,7 @@ package math.problems;
 import databases.ConnectToSqlDB;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LowestNumber {
@@ -15,12 +16,14 @@ public class LowestNumber {
 		int  array[] = new int[]{211,110,99,34,67,89,67,456,321,456,78,90,45,32,56,78,90,54,32,123,67,5,679,54,32,65};
 
 		//find lowest number from the array
+		Arrays.sort(array);
+		int lowestNumber = array[0];
 
 		ConnectToSqlDB connectToSqlDB = new ConnectToSqlDB();
 		List<String> lowestValue = new ArrayList<String>();
 		try {
-			connectToSqlDB.insertDataFromArrayToSqlTable(array, "tbl_lowestNumber", "column_lowestNumber");
-			lowestValue = connectToSqlDB.readDataBase("tbl_lowestNumber", "column_lowestNumber");
+			connectToSqlDB.insertDataFromArrayToSqlTable(array, "tbl_lowestNumber", "ID");
+			lowestValue = connectToSqlDB.readDataBase("tbl_lowestNumber", "SortingNumbers");
 
 		} catch (Exception e) {
 			e.printStackTrace();
